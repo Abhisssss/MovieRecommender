@@ -1,0 +1,46 @@
+{% load staticfiles %}
+{% load static %}
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Movie Recommendations</title>
+
+</head>
+<body >
+
+
+<form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <b>Movie Name:</b>
+            <input type="text"   required="required" placeholder="Enter Movie Name" name="movie_name" />
+            <b>Movie Id:</b>
+            <input type="text"   required="required" placeholder="Enter Movie Id" name="movie_id" />
+            <b>User Id:</b>
+            <input type="text"   required="required" placeholder="Enter User Id" name="user_id" />
+
+
+            <button type="submit" >SUBMIT</button>
+
+            </form>
+
+            {% if output %}
+  <h1><center>Recommended Movies</center></h1>
+  <center>
+  <table cellspacing="20" aligh="center">
+
+  <tr ><td><b>Item num</b> </td><td><b>Movies</b></td></tr>
+  <tr width="600" ></tr>
+
+<p>
+    <p> {% for i in output %}
+    <tr><td width="400">{{i.0}}</td><td width="400">{{i.1}}</td></tr>
+    {%endfor %}
+    </p>
+
+
+    </p></table>
+    </center>
+
+  {% endif %}
